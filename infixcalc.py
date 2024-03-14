@@ -26,7 +26,10 @@ n2: 4
 
 __version__ = "0.1.0"
 
+import os
 import sys
+from datetime import datetime
+
 arguments = sys.argv[1:]
 
 if not arguments:
@@ -70,6 +73,13 @@ if operation == "mul":
     result = n1 * n2
 if operation == "div":
     result = n1 / n2 
+
+path = os.curdir
+filepath = os.path.join(path, "infixcalc.log")
+timestemp = datetime.now().isoformat()
+
+with open(filepath, "a") as file_:
+     file_.write(f"{timestemp} - {operation}, {n1}, {n2} = {result}\n")
 
 print(f"O resultado é: {result}")
 
